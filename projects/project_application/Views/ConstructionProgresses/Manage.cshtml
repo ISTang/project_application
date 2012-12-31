@@ -1,0 +1,83 @@
+﻿@model IEnumerable<project_application.Models.ConstructionProgressModel>
+
+@{
+    ViewBag.Title = "建设进度设置";
+}
+
+@section head {
+    <script type="text/javascript">
+        $(function () {
+            $('#constructionprogresses_manage').dataTable({
+                "oLanguage": dataTablesLanguage,
+                //"fnDrawCallback": groupMyTable,
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bSort": false,
+                "bInfo": true,
+                "bAutoWidth": true
+            }).makeEditable({
+                sUpdateURL: "/ConstructionProgresses/Update",
+                sDeleteURL: "/ConstructionProgresses/Delete",
+                sDeleteRowButtonId: "btnDeleteconstructionProgress",
+                fnShowError: function (message, action) {
+                    switch (action) {
+                        case "update":
+                            $('#constructionprogresses_manage').jAlert("修改失败: " + message, "fatal");
+                            break;
+                        case "delete":
+                            $('#constructionprogresses_manage').jAlert("删除失败: " + message, "fatal");
+                            break;
+                    }
+                },
+                "aoColumns": [
+                    null,
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以修改',
+                        onblur: 'submit'
+                    },
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以修改',
+                        onblur: 'submit'
+                    }]
+            });
+        })
+    </script>
+}
+
+<h2>建设进度设置</h2>
+
+<p>
+    @Html.ActionLink("新建", "Create")
+</p>
+
+<div>
+
+    <table id="constructionprogresses_manage">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Order)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="@item.ID">
+                    <td>@Html.DisplayFor(modelItem => item.Sequence)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Order)</td>
+                </tr>
+        
+            }
+        </tbody>
+
+    </table>
+
+    <button id="btnDeleteconstructionProgress">删除</button>
+
+</div>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<project_application.Models.ConstructionPeriodModel>
+
+@{
+    ViewBag.Title = "建设期限设置";
+}
+
+@section head {
+    <script type="text/javascript">
+        $(function () {
+            $('#constructionperiods_manage').dataTable({
+                "oLanguage": dataTablesLanguage,
+                //"fnDrawCallback": groupMyTable,
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bSort": false,
+                "bInfo": true,
+                "bAutoWidth": true
+            }).makeEditable({
+                sUpdateURL: "/ConstructionPeriods/Update",
+                sDeleteURL: "/ConstructionPeriods/Delete",
+                sDeleteRowButtonId: "btnDeleteConstructionPeriod",
+                fnShowError: function (message, action) {
+                    switch (action) {
+                        case "update":
+                            $('#constructionperiods_manage').jAlert("修改失败: " + message, "fatal");
+                            break;
+                        case "delete":
+                            $('#constructionperiods_manage').jAlert("删除失败: " + message, "fatal");
+                            break;
+                    }
+                },
+                "aoColumns": [
+                    null,
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以修改',
+                        onblur: 'submit'
+                    }]
+            });
+        })
+    </script>
+}
+
+<h2>建设期限设置</h2>
+
+<p>
+    @Html.ActionLink("新建", "Create")
+</p>
+
+<div>
+
+    <table id="constructionperiods_manage">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="@item.ID">
+                    <td>@Html.DisplayFor(modelItem => item.Sequence)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                </tr>
+        
+            }
+        </tbody>
+
+    </table>
+
+    <button id="btnDeleteConstructionPeriod">删除</button>
+
+</div>

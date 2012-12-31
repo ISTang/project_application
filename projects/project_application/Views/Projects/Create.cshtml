@@ -1,0 +1,75 @@
+﻿@model project_application.Models.BasicProject
+
+@{
+    ViewBag.Title = "新建项目";
+}
+
+<h2>新建项目</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>项目</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Number)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Number)
+            @Html.ValidationMessageFor(model => model.Number)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Type)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Type, Model.GetProjectTypeList(),"请选择")
+            @Html.ValidationMessageFor(model => model.Type)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Department)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Department, Model.GetUserDepartmentList(),"请选择")
+            @Html.ValidationMessageFor(model => model.Department)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Stage)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Stage, Model.GetProjectStageList(),"请选择")
+            @Html.ValidationMessageFor(model => model.Stage)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Memo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Memo)
+            @Html.ValidationMessageFor(model => model.Memo)
+        </div>
+
+        <p>
+            <input type="submit" value="新建" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("返回", "Manage")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,40 @@
+﻿@model project_application.Models.LocalPasswordModel
+@{
+    ViewBag.Title = "更改密码";
+
+    var realname = "";
+    using (var db = new project_application.Models.UsersContext())
+    {
+        realname = db.UserProfiles.SingleOrDefault(u => u.UserName == User.Identity.Name).RealName;
+    }
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+<p>你已使用 <strong>@realname</strong> 身份登录。</p>
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial")
+}
+
+<section id="externalLogins">
+    <!--
+    @Html.Action("RemoveExternalLogins")
+
+    <h3>添加外部登录</h3>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+    -->
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

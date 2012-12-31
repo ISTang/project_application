@@ -1,0 +1,134 @@
+﻿@model project_application.Models.BasicProject
+
+@{
+    ViewBag.Title = "项目详情";
+}
+
+<h2>项目详情</h2>
+
+<fieldset>
+    <legend>项目</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Stage)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Stage)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BudgetInvestment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BudgetInvestment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PrincipalOrDepartment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrincipalOrDepartment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Type)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Memo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Memo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Number)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Number)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Funds)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Funds)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MainFundsSource)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MainFundsSource)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TotalInvestment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalInvestment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Year)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Year)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConstructionDetails)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConstructionDetails)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Attachments)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Attachments)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Content)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Content)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Classification)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Classification)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nature)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nature)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConstructionWay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConstructionWay)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("修改", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("返回", "Index")
+</p>

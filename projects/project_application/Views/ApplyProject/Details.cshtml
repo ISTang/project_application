@@ -1,0 +1,127 @@
+﻿@model project_application.Models.ApplyProject
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ApplyProject</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectNameTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectNameTitle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ApplySchool)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ApplySchool)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectLeader)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectLeader)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ApplyDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ApplyDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectLeaderDetail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectLeaderDetail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectAbstract)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectAbstract)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectMeaning)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectMeaning)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BulidTarget)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BulidTarget)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BulidContent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BulidContent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BulidTask)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BulidTask)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExpectEffect)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExpectEffect)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectSchedule)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectSchedule)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectPay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectPay)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectAttach)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectAttach)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

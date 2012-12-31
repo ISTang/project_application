@@ -1,0 +1,123 @@
+﻿@model IEnumerable<project_application.Models.ApplyProject>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            项目名称
+        </th>
+        <th>
+           申请单位
+        </th>
+        <th>
+          项目负责人
+        </th>
+        <th>
+           申请日期
+        </th>
+        <th>
+           项目类型
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectLeaderDetail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectAbstract)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectMeaning)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BulidTarget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BulidContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BulidTask)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectEffect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectSchedule)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectPay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectAttach)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectNameTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplySchool)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectLeader)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplyDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectLeaderDetail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectAbstract)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectMeaning)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BulidTarget)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BulidContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BulidTask)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectEffect)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectSchedule)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectPay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectAttach)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

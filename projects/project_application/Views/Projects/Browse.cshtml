@@ -1,0 +1,81 @@
+﻿@model IEnumerable<project_application.Models.ProjectModel>
+
+@{
+    ViewBag.Title = "项目浏览";
+}
+
+<h2>项目浏览</h2>
+
+
+<div style="margin-top:16px;margin-bottom:16px">
+    <strong>项目阶段</strong>:&nbsp;&nbsp;
+    @Html.ActionLink("预备阶段", "Browse", new {Stage="预备"}) &nbsp&nbsp;
+    @Html.ActionLink("储备阶段", "Browse", new {Stage="储备"}) &nbsp;&nbsp;
+    @Html.ActionLink("建设阶段", "Browse", new {Stage="建设"}) &nbsp;&nbsp;
+    @Html.ActionLink("已完成", "Browse", new {Stage="完成"})
+</div>
+
+<table id="projects_browse">
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StageName)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Sequence)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StageName)
+            </td>
+        </tr>
+    }
+    </tbody>
+
+</table>
+
+@section head {
+    <script type="text/javascript">   
+        $(function() {
+            $('#projects_browse').dataTable({
+                "oLanguage": dataTablesLanguage,
+                //"fnDrawCallback": groupMyTable,
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": false,
+                "bInfo": true,
+                "bAutoWidth": true
+            });
+        });
+    </script>
+}

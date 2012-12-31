@@ -1,0 +1,24 @@
+﻿@{
+    var realname = "";
+    if (Request.IsAuthenticated) {
+        using (var db = new project_application.Models.UsersContext())
+        {
+            realname = db.UserProfiles.SingleOrDefault(u => u.UserName == User.Identity.Name).RealName;
+        }
+    }
+}
+
+@if (Request.IsAuthenticated) {
+    <text>
+        你好，@Html.ActionLink( realname+(User.IsInRole("Admin")?"[管理员]":""), "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "更改密码" })!
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">注销</a>
+        }
+    </text>
+} else {
+    <ul>
+        <li>@Html.ActionLink("注册", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("登录", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

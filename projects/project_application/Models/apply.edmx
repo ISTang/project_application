@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="apply.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="applyStoreContainer">
+    <EntitySet Name="ApplyProjectSet" EntityType="apply.Store.ApplyProjectSet" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="ApplyProjectSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectNameTitle" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ApplySchool" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ProjectLeader" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ApplyDate" Type="datetime" Nullable="false" />
+    <Property Name="ProjectType" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ProjectName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectLeaderDetail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectAbstract" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectMeaning" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BulidTarget" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BulidContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BulidTask" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExpectEffect" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectSchedule" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectPay" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectAttach" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="apply" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="applyContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplyProjectSet" EntityType="apply.ApplyProject" />
+        </EntityContainer>
+        <EntityType Name="ApplyProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ProjectNameTitle" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ApplySchool" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProjectLeader" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="ApplyDate" Nullable="false" />
+          <Property Type="String" Name="ProjectType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProjectName" Nullable="false" />
+          <Property Type="String" Name="ProjectLeaderDetail" Nullable="false" />
+          <Property Type="String" Name="ProjectAbstract" Nullable="false" />
+          <Property Type="String" Name="ProjectMeaning" Nullable="false" />
+          <Property Type="String" Name="BulidTarget" Nullable="false" />
+          <Property Type="String" Name="BulidContent" Nullable="false" />
+          <Property Type="String" Name="BulidTask" Nullable="false" />
+          <Property Type="String" Name="ExpectEffect" Nullable="false" />
+          <Property Type="String" Name="ProjectSchedule" Nullable="false" />
+          <Property Type="String" Name="ProjectPay" Nullable="false" />
+          <Property Type="String" Name="ProjectAttach" Nullable="false" MaxLength="100" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="applyStoreContainer" CdmEntityContainer="applyContainer">
+    <EntitySetMapping Name="ApplyProjectSet">
+      <EntityTypeMapping TypeName="IsTypeOf(apply.ApplyProject)">
+        <MappingFragment StoreEntitySet="ApplyProjectSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectNameTitle" ColumnName="ProjectNameTitle" />
+          <ScalarProperty Name="ApplySchool" ColumnName="ApplySchool" />
+          <ScalarProperty Name="ProjectLeader" ColumnName="ProjectLeader" />
+          <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
+          <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectLeaderDetail" ColumnName="ProjectLeaderDetail" />
+          <ScalarProperty Name="ProjectAbstract" ColumnName="ProjectAbstract" />
+          <ScalarProperty Name="ProjectMeaning" ColumnName="ProjectMeaning" />
+          <ScalarProperty Name="BulidTarget" ColumnName="BulidTarget" />
+          <ScalarProperty Name="BulidContent" ColumnName="BulidContent" />
+          <ScalarProperty Name="BulidTask" ColumnName="BulidTask" />
+          <ScalarProperty Name="ExpectEffect" ColumnName="ExpectEffect" />
+          <ScalarProperty Name="ProjectSchedule" ColumnName="ProjectSchedule" />
+          <ScalarProperty Name="ProjectPay" ColumnName="ProjectPay" />
+          <ScalarProperty Name="ProjectAttach" ColumnName="ProjectAttach" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<project_application.Models.ProjectStageModel>
+
+@{
+    ViewBag.Title = "项目阶段设置";
+}
+
+@section head {
+    <script type="text/javascript">
+        $(function () {
+            $('#projectstages_manage').dataTable({
+                "oLanguage": dataTablesLanguage,
+                //"fnDrawCallback": groupMyTable,
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bSort": false,
+                "bInfo": true,
+                "bAutoWidth": true
+            }).makeEditable({
+                sUpdateURL: "/ProjectStages/Update",
+                sDeleteURL: "/ProjectStages/Delete",
+                sDeleteRowButtonId: "btnDeleteProjectStage",
+                fnShowError: function (message, action) {
+                    switch (action) {
+                        case "update":
+                            $('#projectstages_manage').jAlert("修改失败: " + message, "fatal");
+                            break;
+                        case "delete":
+                            $('#projectstages_manage').jAlert("删除失败: " + message, "fatal");
+                            break;
+                    }
+                },
+                "aoColumns": [
+                    null,
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以修改',
+                        onblur: 'submit'
+                    },
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以修改',
+                        onblur: 'submit'
+                    }]
+            });
+        })
+    </script>
+}
+
+<h2>项目阶段设置</h2>
+
+<p>
+    @Html.ActionLink("新建", "Create")
+</p>
+
+<div>
+
+    <table id="projectstages_manage">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Order)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="@item.ID">
+                    <td>@Html.DisplayFor(modelItem => item.Sequence)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Order)</td>
+                </tr>
+        
+            }
+        </tbody>
+
+    </table>
+
+    <button id="btnDeleteProjectStage">删除</button>
+
+</div>

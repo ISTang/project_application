@@ -1,0 +1,142 @@
+﻿@model IEnumerable<project_application.Models.ProjectModel>
+
+@{
+    ViewBag.Title = "项目维护";
+}
+
+@section head {
+    <script type="text/javascript">
+        function HTMLDecode(str) {
+            var s = "";
+            if (str.length == 0) return "";
+            s = str.replace(/&amp;/g, "&");
+            s = s.replace(/&lt;/g, "<");
+            s = s.replace(/&gt;/g, ">");
+            s = s.replace(/&nbsp;/g, " ");
+            s = s.replace(/&quot;/g, "\"");
+            s = s.replace(/&#39;/g, "'");
+            return s;
+        }
+
+        $(function () {
+            $('#projects_manage').dataTable({
+                "bServerSide": true,
+                "sAjaxSource": "/Projects/AjaxHandler",
+                "bProcessing": true,
+                "aoColumns": [
+                                {
+                                    "sName": "ID",
+                                    "bSearchable": false,
+                                    "bSortable": false,
+                                    "bVisible": false
+                                },
+                                {
+                                    "sName": "Sequence",
+                                    "bSearchable": false,
+                                    "bSortable": false
+                                },
+                                { "sName": "Number" },
+                                { "sName": "Name" },
+                                { "sName": "TypeName" },
+                                { "sName": "DepartmentName" },
+                                { "sName": "StageName" },
+                                { "sName": "Memo" }
+                ],
+                "oLanguage": dataTablesLanguage,
+                //"fnDrawCallback": groupMyTable,
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bSort": true,
+                "bInfo": true,
+                "bAutoWidth": true
+            }).makeEditable({
+                sUpdateURL: "/Projects/Update",
+                sDeleteURL: "/Projects/Delete",
+                sDeleteRowButtonId: "btnDeleteProject",
+                fnShowError: function (message, action) {
+                    switch (action) {
+                        case "update":
+                            $('#projects_manage').jAlert("修改失败: " + message, "fatal");
+                            break;
+                        case "delete":
+                            $('#projects_manage').jAlert("删除失败: " + message, "fatal");
+                            break;
+                    }
+                },
+                "aoColumns": [
+                    null,
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以修改',
+                        onblur: 'submit'
+                    },
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以修改',
+                        onblur: 'submit'
+                    },
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以选择',
+                        loadtext: '装入...',
+                        type: 'select',
+                        onblur: 'submit',
+                        data: HTMLDecode("@ViewBag.ProjectTypesJson")
+                    },
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以选择',
+                        loadtext: '装入...',
+                        type: 'select',
+                        onblur: 'submit',
+                        data: HTMLDecode("@ViewBag.DepartmentNamesJson")
+                    },
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以选择',
+                        loadtext: '装入...',
+                        type: 'select',
+                        onblur: 'submit',
+                        data: HTMLDecode("@ViewBag.ProjectStagesJson")
+                    },
+                    {
+                        indicator: '保存...',
+                        tooltip: '双击可以修改',
+                        onblur: 'submit'
+                    }]
+            });
+        })
+    </script>
+}
+
+<h2>项目维护</h2>
+
+<p>
+    @Html.ActionLink("新建", "Create")&nbsp;&nbsp;@Html.ActionLink("从 Excel 导入", "Import")&nbsp;&nbsp;@Html.ActionLink("导出到 Excel", "Export")
+</p>
+
+<div>
+
+    <table id="projects_manage" class="display">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>序号</th>
+                <th>@Html.DisplayNameFor(model => model.Number)</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.TypeName)</th>
+                <th>@Html.DisplayNameFor(model => model.DepartmentName)</th>
+                <th>@Html.DisplayNameFor(model => model.StageName)</th>
+                <th>@Html.DisplayNameFor(model => model.Memo)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+
+    </table>
+
+    <button id="btnDeleteProject">删除</button>
+
+</div>

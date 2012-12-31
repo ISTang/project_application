@@ -1,0 +1,88 @@
+﻿@model IEnumerable<project_application.Models.ProjectModel>
+
+@{
+    ViewBag.Title = "项目搜索";
+}
+
+<h2>项目搜索</h2>
+
+<p>
+    @using (Html.BeginForm("Search", "Projects", FormMethod.Get))
+    {     
+        <p>项目编号:@Html.TextBox("Number")&nbsp;&nbsp;项目名称:@Html.TextBox("Name")<br />
+            项目类型:@Html.DropDownList("Type","全部")&nbsp;&nbsp;
+            所属部门:@Html.DropDownList("Department","全部")&nbsp;&nbsp;
+            所处阶段:@Html.DropDownList("Stage","全部")&nbsp;&nbsp;<input type="submit" value="搜索" />
+        </p> 
+    }
+</p>
+<table id="projects_search">
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Memo)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Sequence)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Memo)
+            </td>
+        </tr>
+    }
+    </tbody>
+
+</table>
+
+@section head {
+    <script type="text/javascript">   
+        $(function() {
+                $('#projects_search').dataTable({
+                    "oLanguage": dataTablesLanguage,
+                    //"fnDrawCallback": groupMyTable,
+                    "bPaginate": true,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": true,
+                    "bAutoWidth": true
+                });
+        });
+    </script>
+}
