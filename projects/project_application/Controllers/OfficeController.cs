@@ -10,7 +10,8 @@ using System.Linq;
 using System.Text;
 using NPOI.HSSF.UserModel;
 using NPOI.POIFS.FileSystem;
-using NPOI.SS.UserModel;  
+using NPOI.SS.UserModel;
+using project_application.Models;
 //引入  操作 xml的包
 using DocumentFormat.OpenXml;  
  using DocumentFormat.OpenXml.Packaging;  
@@ -21,10 +22,12 @@ namespace project_application.Controllers
 {
     public class OfficeController : Controller
     {
-         
+        private ProjectsContext db = new ProjectsContext();
         // excel  导入  并写入数据库
-        public static void importExcel(string fileName)
+        public     void importExcel(string fileName)
         {
+            string phyPath = HttpContext.Request.MapPath("/");
+             fileName = phyPath + "test.xls";
             FileStream file = null;
             try
             {
@@ -36,17 +39,27 @@ namespace project_application.Controllers
                     IRow headerRow = sheet.GetRow(0);//第一行为标题行   
                     int cellCount = headerRow.LastCellNum;//LastCellNum = PhysicalNumberOfCells   
                     int rowCount = sheet.LastRowNum;//LastRowNum = PhysicalNumberOfRows - 1   
-                    for (int i = (sheet.FirstRowNum + 1); i <= rowCount; i++)
+                    for (int i = (sheet.FirstRowNum + 2); i <= rowCount; i++)
                     {
                         IRow row = sheet.GetRow(i);
 
                         if (row != null)
                         {
-                            for (int j = row.FirstCellNum; j < cellCount; j++)
-                            {
-                                if (row.GetCell(j) != null)
-                                    Console.WriteLine(row.GetCell(j));
-                            }
+                            //for (int j = row.FirstCellNum; j < cellCount; j++)
+                            //{
+                            //    if (row.GetCell(j) != null)
+                            //        Console.WriteLine(row.GetCell(j));
+                            BasicProject bp = new BasicProject();
+                            bp.Name = row.GetCell(2).ToString();
+                            //项目类型
+                          String     typeName = row.GetCell(3).ToString();
+                           //项目资金来源
+                          String moneyresource = row.GetCell(4).ToString();
+                          if (typeName.Equals(""))  break ;
+                         //var  moneys=db.
+                          var type = db.ProjectTypes.First(d => d.Name == typeName);
+                          bp.Type = type;
+                            //}
                         }
 
                     }
@@ -121,9 +134,9 @@ namespace project_application.Controllers
             }
         }
 
-        public string BuildWord(string  content)
+        public String  BuildWord(ApplyProject applyproject, String phyPath)
         {
-         string phyPath = HttpContext.Request.MapPath("/");
+     
           object    filename =phyPath+"test.doc";
           //创建Word文档
           Object Nothing = System.Reflection.Missing.Value;
@@ -157,7 +170,27 @@ insertline(6, WordDoc);
  AddContent(WordDoc, "贵州民族学院发展规划处制", 16, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter, 1);
  WordDoc.Paragraphs.Last.Range.InsertBreak(ref oPageBreak) ;//插入了一页 
  AddContent(WordDoc, "一、项目概况", 16, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
-
+ AddContent(WordDoc, "1、项目名称："+applyproject.ProjectNameTitle, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "2、项目类型：" + applyproject.ProjectType, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "3、项目负责人基本情况:" + applyproject.ProjectLeaderDetail, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "4、项目简介：" + applyproject.ProjectAbstract, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "二、项目建设的意义和可行性", 16, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc,  applyproject.ProjectMeaning, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "三、项目建设目标", 16, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "1、建设目标"+applyproject.BulidTarget, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "2、建设内容" + applyproject.BulidContent, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+  AddContent(WordDoc, "四、项目建设任务", 16, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+  AddContent(WordDoc, applyproject.BulidTask, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "五、项目预期成效", 16, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc,  applyproject.ExpectEffect, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "六、建设项目实施组织及进度安排", 16, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, applyproject.ProjectSchedule, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "七、保障措施", 16, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, applyproject.ProjectEnsure, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, "八、项目支出预算及安排（附设备采购清单)", 16, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+ AddContent(WordDoc, applyproject.ProjectPay, 12, "宋体", Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft, 1);
+        
+            
       // myRange.Font.Size = 24;
        object FileFormat = Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatDocument97;
        //文件保存

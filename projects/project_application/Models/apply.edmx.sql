@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 12/15/2012 13:40:17
+-- Date Created: 12/20/2012 12:21:34
 -- Generated from EDMX file: G:\贵州项目\Models\apply.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [ApplyData];
+USE [ApplyProjec];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -48,7 +48,11 @@ CREATE TABLE [dbo].[ApplyProjectSet] (
     [ExpectEffect] nvarchar(max)  NOT NULL,
     [ProjectSchedule] nvarchar(max)  NOT NULL,
     [ProjectPay] nvarchar(max)  NOT NULL,
-    [ProjectAttach] nvarchar(100)  NOT NULL
+    [ProjectAttach] nvarchar(100)  NOT NULL,
+    [ApplyPeopleName] nvarchar(50)  NOT NULL,
+    [ApplyPeopleDepartment] nvarchar(50)  NOT NULL,
+    [ProjectEnsure] nvarchar(max)  NOT NULL,
+    [ApplyProjectStatus] smallint  NOT NULL
 );
 GO
 

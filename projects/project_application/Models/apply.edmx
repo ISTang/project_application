@@ -29,6 +29,10 @@
     <Property Name="ProjectSchedule" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ProjectPay" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ProjectAttach" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ApplyPeopleName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ApplyPeopleDepartment" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProjectEnsure" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ApplyProjectStatus" Type="smallint" Nullable="false" DefaultValue="0" />
   </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -58,6 +62,10 @@
           <Property Type="String" Name="ProjectSchedule" Nullable="false" />
           <Property Type="String" Name="ProjectPay" Nullable="false" />
           <Property Type="String" Name="ProjectAttach" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ApplyPeopleName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ApplyPeopleDepartment" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ProjectEnsure" Nullable="false" />
+          <Property Type="Int16" Name="ApplyProjectStatus" Nullable="false" DefaultValue="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -85,6 +93,10 @@
           <ScalarProperty Name="ProjectSchedule" ColumnName="ProjectSchedule" />
           <ScalarProperty Name="ProjectPay" ColumnName="ProjectPay" />
           <ScalarProperty Name="ProjectAttach" ColumnName="ProjectAttach" />
+          <ScalarProperty Name="ApplyPeopleName" ColumnName="ApplyPeopleName" />
+          <ScalarProperty Name="ApplyPeopleDepartment" ColumnName="ApplyPeopleDepartment" />
+          <ScalarProperty Name="ProjectEnsure" ColumnName="ProjectEnsure" />
+          <ScalarProperty Name="ApplyProjectStatus" ColumnName="ApplyProjectStatus" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

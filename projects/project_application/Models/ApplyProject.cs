@@ -11,25 +11,70 @@ namespace project_application.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     public partial class ApplyProject
     {
+        public ApplyProject()
+        {
+            this.ApplyProjectStatus = 0;
+        }
+    
         public int Id { get; set; }
+        [Required]
+        [Display(Name = "项目标题")]
         public string ProjectNameTitle { get; set; }
+        [Required]
+        [Display(Name = "申请学校")]
         public string ApplySchool { get; set; }
+        [Required]
+        [Display(Name = "项目负责人")]
         public string ProjectLeader { get; set; }
+         [Display(Name = "申请日期")]
         public System.DateTime ApplyDate { get; set; }
+        [Required]
+        [Display(Name = "项目类型")]
         public string ProjectType { get; set; }
+        [Required]
+        [Display(Name = "项目名称")]
         public string ProjectName { get; set; }
+        [Required]
+        [Display(Name = "项目负责人基本情况：")]
         public string ProjectLeaderDetail { get; set; }
+        [Required]
+        [Display(Name = "项目简介")]
         public string ProjectAbstract { get; set; }
+        [Required]
+        [Display(Name = "项目建设的意义和可行性")]
         public string ProjectMeaning { get; set; }
+        [Required]
+        [Display(Name = "项目建设意义")]
         public string BulidTarget { get; set; }
+        [Required]
+        [Display(Name = "项目建设内容")]
         public string BulidContent { get; set; }
+        [Required]
+        [Display(Name = "项目建设目标")]
         public string BulidTask { get; set; }
+        [Required]
+        [Display(Name = "项目预期成效")]
         public string ExpectEffect { get; set; }
+        [Required]
+        [Display(Name = "建设项目实施组织及进度安排")]
         public string ProjectSchedule { get; set; }
+        [Required]
+        [Display(Name = "项目支出预算及安排")]
         public string ProjectPay { get; set; }
+          [Display(Name = "项目预算附件")]
         public string ProjectAttach { get; set; }
+       [Display(Name = "项目申请人")]
+        public string ApplyPeopleName { get; set; }
+        [Display(Name = "申请单位")]
+        public string ApplyPeopleDepartment { get; set; }
+          [Display(Name = "保障措施")]
+        public string ProjectEnsure { get; set; }
+        [Display(Name = "申请状态")]
+        public short ApplyProjectStatus { get; set; }
     }
 }
