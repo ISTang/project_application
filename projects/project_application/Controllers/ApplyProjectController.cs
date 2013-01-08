@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using project_application.Models;
-
+using System.IO;
 namespace project_application.Controllers
 {
     public class ApplyProjectController : Controller
@@ -46,12 +46,40 @@ namespace project_application.Controllers
         // POST: /ApplyProject/Create
 
         [HttpPost]
-        public ActionResult Create(ApplyProject applyproject)
+        public ActionResult Create(ApplyProject applyproject, HttpPostedFileBase AttachFile = null)
         {
+            String FileUrl;
+
             if (ModelState.IsValid)
             {
+                if (AttachFile != null)
+                {
+                    AttachFile = Request.Files["AttachFile"];
+                    if (AttachFile.ContentLength > 0)
+                    {
+                        FileUrl = "upload/";
+                        String Path = Server.MapPath("~/") + FileUrl;
+                        String FileName = DateTime.UtcNow.ToString("yyyy" + "MM" + "dd" + "HH" + "mm" + "ss" + "ffffff");
+                        FileUrl = FileUrl + FileName;
+                        if (!Directory.Exists(Path))
+                            Directory.CreateDirectory(Path);
+                        String extstr = System.IO.Path.GetExtension(AttachFile.FileName);
+                        AttachFile.SaveAs(Path + FileName + extstr);
+                        applyproject.ProjectAttach = FileUrl + extstr;
+                    }
+                }
+                else
+                {
+                    applyproject.ProjectAttach = "";
+                }
+                applyproject.ApplyPeopleDepartment = "实验中心";
+                applyproject.ApplyPeopleName = "王凯斯";
+                UsersContext xx = new UsersContext();
                 db.ApplyProjectSet.Add(applyproject);
                 db.SaveChanges();
+                string phyPath = HttpContext.Request.MapPath("/");
+                OfficeController oc = new OfficeController();
+                oc.BuildWord(applyproject, phyPath);
                 return RedirectToAction("Index");
             }
 
@@ -75,10 +103,31 @@ namespace project_application.Controllers
         // POST: /ApplyProject/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(ApplyProject applyproject)
+        public ActionResult Edit(ApplyProject applyproject, HttpPostedFileBase AttachFile = null)
         {
+            String FileUrl;
             if (ModelState.IsValid)
             {
+                if (AttachFile != null)
+                {
+                    AttachFile = Request.Files["AttachFile"];
+                    if (AttachFile.ContentLength > 0)
+                    {
+                        FileUrl = "upload/";
+                        String Path = Server.MapPath("~/") + FileUrl;
+                        String FileName = DateTime.UtcNow.ToString("yyyy" + "MM" + "dd" + "HH" + "mm" + "ss" + "ffffff");
+                        FileUrl = FileUrl + FileName;
+                        if (!Directory.Exists(Path))
+                            Directory.CreateDirectory(Path);
+                        String extstr = System.IO.Path.GetExtension(AttachFile.FileName);
+                        AttachFile.SaveAs(Path + FileName + extstr);
+                        applyproject.ProjectAttach = FileUrl + extstr;
+
+                    }
+                }
+
+                applyproject.ApplyPeopleDepartment = "实验中心";
+                applyproject.ApplyPeopleName = "王凯斯";
                 db.Entry(applyproject).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
