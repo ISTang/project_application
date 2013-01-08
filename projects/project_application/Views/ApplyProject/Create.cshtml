@@ -1,35 +1,36 @@
 ﻿@model project_application.Models.ApplyProject
-
+ 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "项目申报";
 }
 
-<h2>Create</h2>
+<h2>项目填报</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Create", "ApplyProject", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>ApplyProject</legend>
+        <legend>项目填报</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.ProjectNameTitle)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectNameTitle)
+            @Html.TextAreaFor(model => model.ProjectNameTitle)
             @Html.ValidationMessageFor(model => model.ProjectNameTitle)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ApplySchool)
+            @Html.LabelFor(model => model.ApplySchool,"申请单位")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ApplySchool)
-            @Html.ValidationMessageFor(model => model.ApplySchool)
+            @Html.EditorFor(model => model.ApplySchool,"申请学校")
+            @Html.ValidationMessageFor(model => model.ApplySchool,"贵州民族大学")
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectLeader)
+            @Html.LabelFor(model => model.ProjectLeader,"项目负责人")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.ProjectLeader)
@@ -37,111 +38,114 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ApplyDate)
+            @Html.LabelFor(model => model.ApplyDate,"填报日期")
         </div>
-        <div class="editor-field">
+    
+          <div class="editor-field">
             @Html.EditorFor(model => model.ApplyDate)
             @Html.ValidationMessageFor(model => model.ApplyDate)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectType)
+            @Html.LabelFor(model => model.ProjectMeaning,"一、项目概况")
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectType)
-            @Html.ValidationMessageFor(model => model.ProjectType)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectName)
+           <div class="editor-label">
+            @Html.LabelFor(model => model.ProjectName,"1、项目名称：")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.ProjectName)
             @Html.ValidationMessageFor(model => model.ProjectName)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectLeaderDetail)
+            @Html.LabelFor(model => model.ProjectType,"2、项目类型：")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectLeaderDetail)
+            @Html.EditorFor(model => model.ProjectType)
+            @Html.ValidationMessageFor(model => model.ProjectType)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProjectLeaderDetail,"3、项目负责人基本情况：")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.ProjectLeaderDetail,10,10, new { Style = "width:1000px,height:300px" })
             @Html.ValidationMessageFor(model => model.ProjectLeaderDetail)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectAbstract)
+            @Html.LabelFor(model => model.ProjectAbstract,"4、项目简介：")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectAbstract)
+             @Html.TextAreaFor(model => model.ProjectAbstract,10,10, new { Style = "width:1000px,height:300px" })
             @Html.ValidationMessageFor(model => model.ProjectAbstract)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectMeaning)
+            @Html.LabelFor(model => model.ProjectMeaning,"二、项目建设的意义和可行性")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectMeaning)
+             @Html.TextAreaFor(model => model.ProjectMeaning,10,10, new { Style = "width:1000px,height:300px" })
             @Html.ValidationMessageFor(model => model.ProjectMeaning)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.BulidTarget)
+            @Html.LabelFor(model => model.ProjectMeaning,"三、项目建设目标")
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BulidTarget,"1、建设目标")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.BulidTarget)
+           @Html.TextAreaFor(model => model.BulidTarget,10,10, new { Style = "width:1000px,height:300px" })
             @Html.ValidationMessageFor(model => model.BulidTarget)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.BulidContent)
+            @Html.LabelFor(model => model.BulidContent,"2、建设内容")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.BulidContent)
+             @Html.TextAreaFor(model => model.BulidContent,10,10, new { Style = "width:1000px,height:300px" })
             @Html.ValidationMessageFor(model => model.BulidContent)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.BulidTask)
+            @Html.LabelFor(model => model.BulidTask,"四、项目建设任务")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.BulidTask)
+              @Html.TextAreaFor(model => model.BulidTask,10,10, new { Style = "width:1000px,height:300px" })
             @Html.ValidationMessageFor(model => model.BulidTask)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ExpectEffect)
+            @Html.LabelFor(model => model.ExpectEffect,"五、项目预期成效")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ExpectEffect)
+            @Html.TextAreaFor(model => model.ExpectEffect,10,10, new { Style = "width:1000px,height:300px" })
             @Html.ValidationMessageFor(model => model.ExpectEffect)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectSchedule)
+            @Html.LabelFor(model => model.ProjectSchedule,"六、建设项目实施组织及进度安排")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectSchedule)
+            @Html.TextAreaFor(model => model.ProjectSchedule,10,10, new { Style = "width:1000px,height:300px" })
             @Html.ValidationMessageFor(model => model.ProjectSchedule)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectPay)
+            @Html.LabelFor(model => model.ProjectPay,"七、保障措施")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectPay)
-            @Html.ValidationMessageFor(model => model.ProjectPay)
+           @Html.TextAreaFor(model => model.ProjectEnsure,10,10, new { Style = "width:1000px,height:300px" })
+            @Html.ValidationMessageFor(model => model.ProjectEnsure)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectAttach)
+            @Html.LabelFor(model => model.ProjectPay,"八、项目支出预算及安排")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectAttach)
-            @Html.ValidationMessageFor(model => model.ProjectAttach)
+          @Html.TextAreaFor(model => model.ProjectPay,30,30, new { Style = "width:1500px,height:300px" })
+            @Html.ValidationMessageFor(model => model.ProjectPay)
+            <br>
+            <div>预算安排及其附件:<input type="file" name="AttachFile" id="AttachFile" /></div><br />
+                  
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="提  交" />
         </p>
     </fieldset>
 }

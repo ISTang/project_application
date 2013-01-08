@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>查看细节</h2>
 
 <fieldset>
     <legend>ApplyProject</legend>
@@ -120,8 +120,36 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.ProjectAttach)
     </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ApplyPeopleName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ApplyPeopleName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ApplyPeopleDepartment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ApplyPeopleDepartment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectEnsure)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectEnsure)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ApplyProjectStatus)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ApplyProjectStatus)
+    </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("编  辑", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("返回列表", "Index")
 </p>

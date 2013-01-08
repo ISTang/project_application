@@ -1,65 +1,46 @@
 ﻿@model IEnumerable<project_application.Models.ApplyProject>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "项目列表";
 }
 
-<h2>Index</h2>
+<h2>项目列表</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("项 目 申 报", "Create")
 </p>
-<table>
+<table border="1">
     <tr>
         <th>
-            项目名称
+            @Html.DisplayNameFor(model => model.ProjectNameTitle)
         </th>
         <th>
-           申请单位
+            @Html.DisplayNameFor(model => model.ApplySchool)
         </th>
         <th>
-          项目负责人
+            @Html.DisplayNameFor(model => model.ProjectLeader)
         </th>
         <th>
-           申请日期
+            @Html.DisplayNameFor(model => model.ApplyDate)
         </th>
         <th>
-           项目类型
+            @Html.DisplayNameFor(model => model.ProjectType)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ProjectName)
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.ProjectLeaderDetail)
+            @Html.DisplayNameFor(model => model.ApplyPeopleName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectAbstract)
+            @Html.DisplayNameFor(model => model.ApplyPeopleDepartment)
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.ProjectMeaning)
+            @Html.DisplayNameFor(model => model.ApplyProjectStatus)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BulidTarget)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BulidContent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BulidTask)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExpectEffect)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProjectSchedule)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProjectPay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProjectAttach)
-        </th>
-        <th></th>
+        <th> 操                        作         </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -83,39 +64,19 @@
             @Html.DisplayFor(modelItem => item.ProjectName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectLeaderDetail)
+            @Html.DisplayFor(modelItem => item.ApplyPeopleName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectAbstract)
+            @Html.DisplayFor(modelItem => item.ApplyPeopleDepartment)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplyProjectStatus)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectMeaning)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BulidTarget)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BulidContent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BulidTask)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpectEffect)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectSchedule)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectPay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectAttach)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("编辑", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("查看", "Details", new { id=item.Id }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
